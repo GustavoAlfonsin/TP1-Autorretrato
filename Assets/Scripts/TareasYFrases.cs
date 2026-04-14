@@ -62,27 +62,6 @@ public class TareasYFrases : MonoBehaviour
 
     private string[] SepararCSV(string linea)
     {
-        List<string> resultado = new List<string>();
-        bool dentroDeComillas = false;
-        string actual = "";
-
-        foreach (char c in linea)
-        {
-            if (c == '"')
-            {
-                dentroDeComillas = !dentroDeComillas;
-            }else if (c == ',' && !dentroDeComillas)
-            {
-                resultado.Add(actual);
-                actual = "";
-            }
-            else
-            {
-                actual += c;
-            }
-        }
-
-        resultado.Add(actual);
-        return resultado.ToArray();
+        return new List<string>(linea.Split(',')).ToArray();
     }
 }
