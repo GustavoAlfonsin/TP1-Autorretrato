@@ -29,19 +29,27 @@ public class GameManager : MonoBehaviour
     // Fin del juego
     public GameObject panelFin;
     public TMP_Text txtResultado;
+
+    // Panel de inicio
+    public GameObject panelInicio;
     // Start is called before the first frame update
     void Start()
     {
         enunciados = this.GetComponent<TareasYFrases>();
+        panelFin.SetActive(false);
+        panelInicio.SetActive(true);
+        Time.timeScale = 0f;
+    }
+    public void Empezar()
+    {
         tareaActual = enunciados.darTareaRandom();
         txtDescripcionTarea.text = tareaActual.descripcion;
         txtNegativo.text = "";
         StartCoroutine(cicloPensamientos());
         nuevaFrase();
-        panelFin.SetActive(false);
-        Time.timeScale = 1.0f;
+        panelInicio.SetActive(false);
+        Time.timeScale = 1f;
     }
-
     // Update is called once per frame
     void Update()
     {
