@@ -16,17 +16,28 @@ public class Tarea
         this.positivos = positivos;
         this.negativos = negativos;
     }
+
+    public string recibirPositivo() 
+    {
+        int i = UnityEngine.Random.Range(0, positivos.Count);
+        return positivos[i];
+    }
+
+    public string recibirNegativo() 
+    {
+        int i = UnityEngine.Random.Range(0, negativos.Count);
+        return negativos[i];
+    }
 }
 public class TareasYFrases : MonoBehaviour
 {
     public List<Tarea> tareas = new List<Tarea>();
     public string nombreArchivo = "tareas.csv";
 
-    private void Start()
+    private void Awake()
     {
         cargarCSV();
     }
-
     void cargarCSV()
     {
         string ruta = Path.Combine(Application.streamingAssetsPath, nombreArchivo);
@@ -63,5 +74,12 @@ public class TareasYFrases : MonoBehaviour
     private string[] SepararCSV(string linea)
     {
         return new List<string>(linea.Split(',')).ToArray();
+    }
+
+    public Tarea darTareaRandom()
+    {
+        int i = UnityEngine.Random.Range(0, tareas.Count);
+        Debug.Log($"Tamaño de la lista: {tareas.Count}, indice elegido: {i}");
+        return tareas[i];
     }
 }
